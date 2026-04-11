@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bgRegister from '../../../assets/images/4-Tagarelinha_background.png'; // Reutilizando o fundo para manter a identidade
 
 export const Register: React.FC = () => {
   const navigate = useNavigate();
+
+  // 🔹 dados cadastrais
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!nome || !email || !senha || !confirmarSenha) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+
+    alert('Usuário criado com sucesso!');
+    navigate('/login');
+  };
 
   return (
     <div 
@@ -28,6 +46,88 @@ export const Register: React.FC = () => {
         >
           Criar Nova Conta
         </h1>
+
+          {/*FORMULÁRIO*/}
+        
+        {/* NOME */}
+        <input 
+          type="text"
+          placeholder="NOME"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '470px',
+            top: '200px',
+            width: '400px',
+            height: '45px'
+          }}
+        />
+
+        {/* EMAIL */}
+        <input 
+          type="email"
+          placeholder="EMAIL"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '470px',
+            top: '260px',
+            width: '400px',
+            height: '45px'
+          }}
+        />
+
+        {/* SENHA */}
+        <input 
+          type="password"
+          placeholder="SENHA"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '470px',
+            top: '320px',
+            width: '400px',
+            height: '45px'
+          }}
+        />
+
+        {/* CONFIRMAR SENHA */}
+        <input 
+          type="password"
+          placeholder="CONFIRMAR SENHA"
+          value={confirmarSenha}
+          onChange={(e) => setConfirmarSenha(e.target.value)}
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '470px',
+            top: '380px',
+            width: '400px',
+            height: '45px'
+          }}
+        />
+
+        {/* BOTÃO CADASTRAR */}
+        <button 
+          onClick={handleRegister}
+          className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+          style={{ 
+            position: 'absolute',
+            left: '630px',
+            top: '438px',
+            width: '100px', 
+            height: '25px',
+            fontSize: '12px'
+          }}
+        >
+          CADASTRAR
+        </button>
 
         
         {/* Botão para Voltar ao Login */}

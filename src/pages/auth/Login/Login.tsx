@@ -74,12 +74,13 @@ export const Login: React.FC = () => {
 
   {/* Link ESQUECI MINHA SENHA */}
 <button 
+  onClick={() => navigate('/forgot-password')}
   className="bg-transparent text-[#128298] font-bold hover:underline transition-all border-none outline-none appearance-none cursor-pointer"
   style={{
     position: 'absolute',
     left: '1030px', 
     top: '310px',  
-    fontSize: '14px',
+    fontSize: '12px',
     padding: 0
   }}
 >

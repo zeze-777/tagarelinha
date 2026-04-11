@@ -7,11 +7,15 @@ import { NotFound } from "../pages/404/NotFound";
 import { MainLayout } from "../components/MainLayout";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Register } from "../pages/auth/Register/Register";
+import { ForgotPassword } from "../pages/auth/Forgot Password/ForgotPassword"
+
 
 export const router = createBrowserRouter([
+  { path: "/forgot-password", element: <ForgotPassword /> },
   { path: "/", element: <Splash /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path: "/forgot-password", element: <ForgotPassword /> },
   {
     path: "/app",
     element: <ProtectedRoute />,
@@ -29,3 +33,4 @@ export const router = createBrowserRouter([
   },
   { path: "*", element: <NotFound /> },
 ]);
+
