@@ -5,107 +5,60 @@ import bgRegister from '../../../assets/images/4-Tagarelinha_background.png';
 export const ForgotPassword: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
 
   const handleRecover = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !senha || !confirmarSenha) {
-      alert('Preencha todos os campos!');
+    if (!email) {
+      alert('Digite seu e-mail!');
       return;
     }
 
-    if (senha !== confirmarSenha) {
-      alert('As senhas não coincidem!');
-      return;
-    }
-
-    alert('Senha redefinida com sucesso!');
+    
+    alert('Verifique seu e-mail para redefinir a senha.');
     navigate('/login');
   };
 
   return (
     <div
-      className="w-full h-screen relative"
-      style={{ backgroundImage: `url(${bgRegister})` }}
-    >
-      <div className="absolute inset-0">
+  className="w-full h-screen relative bg-cover bg-center"
+  style={{ backgroundImage: `url(${bgRegister})` }}
+>
+  <div
+  className="w-full h-screen relative bg-cover bg-center"
+  style={{ backgroundImage: `url(${bgRegister})` }}
+>
+  <div className="flex flex-col items-center justify-center h-screen">
+    <h1 className="text-2xl font-bold mb-8 text-center">
+      Recuperar Senha
+    </h1>
 
-        <h1 style={{ position: 'absolute', left: '500px', top: '100px' }}>
-          Recuperar Senha
-        </h1>
+    {/* Email */}
+    <input
+      type="email"
+      placeholder="Digite seu e-mail"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="mb-6 p-3 w-96 border rounded text-lg"
+    />
 
-        {/* Email */}
-        <input
-          type="email"
-          placeholder="Digite seu email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{
-            position: 'absolute',
-            left: '500px',
-            top: '190px',
-            width: '400px',
-            height: '30px'
-          }}
-        />
-
-        {/* Nova Senha */}
-        <input
-          type="password"
-          placeholder="Nova senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          style={{
-            position: 'absolute',
-            left: '500px',
-            top: '240px',
-            width: '400px',
-            height: '30px'
-          }}
-        />
-
-        {/* Confirmar Senha */}
-        <input
-          type="password"
-          placeholder="Confirmar senha"
-          value={confirmarSenha}
-          onChange={(e) => setConfirmarSenha(e.target.value)}
-          style={{
-            position: 'absolute',
-            left: '500px',
-            top: '290px',
-            width: '400px',
-            height: '30px'
-          }}
-        />
-
-        {/* Botão */}
-        <button
-          onClick={handleRecover}
-          style={{
-            position: 'absolute',
-            left: '500px',
-            top: '340px'
-          }}
-        >
-          Enviar
-        </button>
-
-        {/* Voltar */}
-        <button
-          onClick={() => navigate('/login')}
-          style={{
-            position: 'absolute',
-            left: '500px',
-            top: '400px'
-          }}
-        >
-          Voltar
-        </button>
-
-      </div>
+    {/* Botões */}
+    <div className="flex gap-6">
+      <button
+        onClick={handleRecover}
+        className="px-6 py-3 bg-blue-600 text-white rounded text-lg"
+      >
+        Enviar
+      </button>
+      <button
+        onClick={() => navigate('/login')}
+        className="px-8 py-4 bg-gray-500 text-black rounded text-lg"
+      >
+        Voltar
+      </button>
     </div>
+  </div>
+</div>
+</div>
   );
 };
