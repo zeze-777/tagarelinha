@@ -39,20 +39,41 @@ export const ForgotPassword: React.FC = () => {
       placeholder="Digite seu e-mail"
       value={email}
       onChange={(e) => setEmail(e.target.value)}
-      className="mb-6 p-3 w-96 border rounded text-lg"
+      className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+      style={{
+            position: 'absolute',
+            left: '480px',
+            top: '355px',
+            width: '500px',
+            height: '45px'
+          }}
     />
 
     {/* Botões */}
     <div className="flex gap-6">
       <button
         onClick={handleRecover}
-        className="px-6 py-3 bg-blue-600 text-white rounded text-lg"
+        className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+        style={{
+            position: 'absolute',
+            left: '630px',
+            top: '410px',
+            width: '70px',
+            height: '25px'
+          }}
       >
         Enviar
       </button>
       <button
         onClick={() => navigate('/login')}
-        className="px-8 py-4 bg-gray-500 text-black rounded text-lg"
+        className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+        style={{
+            position: 'absolute',
+            left: '720px',
+            top: '410px',
+            width: '70px',
+            height: '25px'
+          }}
       >
         Voltar
       </button>

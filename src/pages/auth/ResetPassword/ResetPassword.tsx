@@ -8,7 +8,7 @@ export const ResetPassword: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const token = searchParams.get('token'); // vem do link enviado por e-mail
+  const token = searchParams.get('token');
 
   const handleReset = async () => {
     if (!senha || !confirmarSenha) {
@@ -49,7 +49,15 @@ export const ResetPassword: React.FC = () => {
           placeholder="Nova senha"
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
-          className="mb-4 p-2 w-full border rounded"
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '580px',
+            top: '350px',
+            width: '260px',
+            height: '35px'
+          }}
+
         />
 
         {/* Confirmar Senha */}
@@ -58,21 +66,46 @@ export const ResetPassword: React.FC = () => {
           placeholder="Confirmar senha"
           value={confirmarSenha}
           onChange={(e) => setConfirmarSenha(e.target.value)}
-          className="mb-6 p-2 w-full border rounded"
+          className="bg-white rounded-full px-6 font-bold text-gray-500 shadow-md outline-none"
+          style={{
+            position: 'absolute',
+            left: '580px',
+            top: '404px',
+            width: '260px',
+            height: '35px'
+            
+          }}
         />
 
-        {/* Botões com espaçamento */}
+        
         <div className="flex flex-col gap-4 w-full">
           <button
             onClick={handleReset}
-            className="p-2 bg-blue-600 text-white rounded"
+            className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+          style={{ 
+            position: 'absolute',
+            left: '625px',
+            top: '459px',
+            width: '70px', 
+            height: '25px',
+            fontSize: '11px'
+          }}
+
           >
             Enviar
           </button>
 
           <button
             onClick={() => navigate('/login')}
-            className="p-2 bg-gray-500 text-white rounded"
+  className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+  style={{ 
+    position: 'absolute',
+    left: '720px',
+    top: '459px',
+    width: '70px', 
+    height: '25px',
+    fontSize: '12px'
+  }}
           >
             Voltar
           </button>
