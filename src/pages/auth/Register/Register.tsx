@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../../services/api'; 
 import bgRegister from '../../../assets/images/4-Tagarelinha_background.png'; // Reutilizando o fundo para manter a identidade
 
 export const Register: React.FC = () => {
@@ -10,8 +11,9 @@ export const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!nome || !email || !senha || !confirmarSenha) {
@@ -19,8 +21,34 @@ export const Register: React.FC = () => {
       return;
     }
 
-    alert('Usuário criado com sucesso!');
-    navigate('/login');
+    if (senha !== confirmarSenha) {
+      alert('As senhas não coincidem!');
+      return;
+    }
+
+    if (senha.length < 6) {
+      alert('A senha deve ter no mínimo 6 caracteres');
+      return;
+    }
+
+    setLoading(true)
+
+    try{
+      const response = await api.post('api/register-users',{
+          name: nome,
+          email: email,
+          password: senha
+      });
+      const responseData = response.data;
+      alert(responseData?.message || 'Usuário criado com sucesso!');
+      navigate('/login');
+
+    }catch(error: unknown){
+      const err = error as { response?: { data?: { message?: string } } };
+      const message = err.response?.data?.message || 'Erro ao cadastrar usuário';
+      alert(message);
+    }finally{ setLoading(false)}
+    
   };
 
   return (

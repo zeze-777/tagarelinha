@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {api} from '../../../services/api'
 import bgLogin from '../../../assets/images/2-Tagarelinha_login.png';
 
 export const Login: React.FC = () => {
@@ -7,12 +8,30 @@ export const Login: React.FC = () => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('isLoggedIn', 'true');
-    navigate('/app/categories');
-  };
+    if(!user || !password){
+      alert('Preencha todos os campos!');
+      return;
+    }
 
+    try{
+      const response = await api.post('api/login',
+      {
+        email:user,
+        password:password
+      });
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('user',JSON.stringify(response.data.user));
+      navigate('/app/categories');
+      
+    }catch(error: unknown){
+      const err = error as { response?: { data?: { message?: string } } };
+      const message = err.response?.data?.message || 'Erro ao fazer login';
+      alert(message);
+    }
+  }
   return (
     <div 
       className="bg-tico-fullscreen w-full h-screen overflow-hidden relative" 
