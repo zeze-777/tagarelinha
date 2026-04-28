@@ -9,7 +9,7 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import { Register } from "../pages/auth/Register/Register";
 import { ForgotPassword } from "../pages/auth/Forgot Password/ForgotPassword"
 import { ResetPassword } from "../pages/auth/ResetPassword/ResetPassword";
-
+import Sentimento from "../pages/app/Categories/Feeling/Feeling";
 
 export const router = createBrowserRouter([
   { path: "/forgot-password", element: <ForgotPassword /> },
@@ -29,6 +29,26 @@ export const router = createBrowserRouter([
           { index: true, element: <Navigate to="categories" replace /> }, 
           { path: "categories", element: <Categories /> },
           { path: "categories/:categoryId/actions", element: <Actions /> },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: "/app",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <MainLayout />,
+        children: [
+          { index: true, element: <Navigate to="categories" replace /> },
+          { path: "categories", element: <Categories /> },
+
+          // rota genérica para outras categorias
+          { path: "categories/:categoryId/actions", element: <Actions /> },
+
+          // rota específica para Sentimento
+          { path: "categories/sentimento/actions", element: <Sentimento /> },
         ],
       },
     ],

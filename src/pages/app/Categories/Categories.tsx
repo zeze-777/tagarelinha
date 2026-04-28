@@ -3,6 +3,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 // Importação dos cards
 import imgComunicacao from '../../../assets/images/Comunicacao_categoria.png';
 import imgDiversao from '../../../assets/images/Diversao_categoria.jpg';
