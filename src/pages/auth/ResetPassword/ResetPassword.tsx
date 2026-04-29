@@ -81,7 +81,7 @@ export const ResetPassword: React.FC = () => {
         <div className="flex flex-col gap-4 w-full">
           <button
             onClick={handleReset}
-            className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+            className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
           style={{ 
             position: 'absolute',
             left: '625px',
@@ -97,7 +97,7 @@ export const ResetPassword: React.FC = () => {
 
           <button
             onClick={() => navigate('/login')}
-  className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+  className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
   style={{ 
     position: 'absolute',
     left: '720px',

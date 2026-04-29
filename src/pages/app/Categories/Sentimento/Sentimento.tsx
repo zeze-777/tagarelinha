@@ -1,0 +1,87 @@
+import { useNavigate } from "react-router-dom";
+import imgFeliz from "../../../../assets/images-category-feeling/Feliz_Sentimento.png";
+import imgTriste from "../../../../assets/images-category-feeling/Triste_Sentimento.png";
+import imgBravo from "../../../../assets/images-category-feeling/Bravo_Sentimento.png";
+import imgSurpreso from "../../../../assets/images-category-feeling/Surpreso_Sentimento.png";
+import imgCansado from "../../../../assets/images-category-feeling/Cansado_Sentimento.png";
+import imgConfuso from "../../../../assets/images-category-feeling/Confuso_Sentimento.png";
+
+export default function Sentimento() {
+  const sentimentos = [
+    { img: imgFeliz, label: "Feliz", sound: "/sounds/feliz.mp3" },
+    { img: imgTriste, label: "Triste", sound: "/sounds/triste.mp3" },
+    { img: imgBravo, label: "Bravo", sound: "/sounds/bravo.mp3" },
+    { img: imgSurpreso, label: "Surpreso", sound: "/sounds/surpreso.mp3" },
+    { img: imgCansado, label: "Cansado", sound: "/sounds/cansado.mp3" },
+    { img: imgConfuso, label: "Confuso", sound: "/sounds/confuso.mp3" },
+  ];
+
+  const navigate = useNavigate();
+  const playSound = (soundPath: string) => {
+    const audio = new Audio(soundPath);
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h1 style={{ textAlign: "center", fontSize: "2.5rem" }}>
+        Sentimento
+      </h1>
+
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: "1.3rem",
+          marginBottom: "2rem",
+        }}
+      >
+        Clique em um sentimento para ouvir o som:
+      </p>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "1.5rem",
+        }}
+      >
+        {sentimentos.map((s, i) => (
+          <div
+            key={i}
+            style={{ textAlign: "center", cursor: "pointer" }}
+            onClick={() => playSound(s.sound)}
+          >
+            <img
+              src={s.img}
+              alt={s.label}
+              style={{
+                width: "120px",
+                height: "120px",
+                objectFit: "contain",
+                borderRadius: "12px",
+                border: "2px solid #ccc",
+                cursor: "pointer",
+              }}
+            />
+            <p style={{ marginTop: "0.5rem", fontWeight: "bold" }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => navigate("/app/categories")}
+        className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
+        style={{
+          position: "absolute",
+          left: "100px",
+          top: "550px",
+          width: "70px",
+          height: "25px",
+        }}
+      >
+        Voltar
+      </button>
+    </div>
+  );
+}

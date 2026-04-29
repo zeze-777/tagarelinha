@@ -78,9 +78,9 @@ export const Login: React.FC = () => {
   className="bg-transparent text-[#128298] font-bold hover:underline transition-all border-none outline-none appearance-none cursor-pointer"
   style={{
     position: 'absolute',
-    left: '1030px', 
+    left: '1023px', 
     top: '310px',  
-    fontSize: '12px',
+    fontSize: '16px',
     padding: 0
   }}
 >

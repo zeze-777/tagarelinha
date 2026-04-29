@@ -53,7 +53,7 @@ export const ForgotPassword: React.FC = () => {
     <div className="flex gap-6">
       <button
         onClick={handleRecover}
-        className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+        className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
         style={{
             position: 'absolute',
             left: '630px',
@@ -66,7 +66,7 @@ export const ForgotPassword: React.FC = () => {
       </button>
       <button
         onClick={() => navigate('/login')}
-        className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+        className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
         style={{
             position: 'absolute',
             left: '720px',

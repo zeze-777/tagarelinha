@@ -116,7 +116,7 @@ export const Register: React.FC = () => {
         {/* BOTÃO CADASTRAR */}
         <button 
           onClick={handleRegister}
-          className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
+          className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
           style={{ 
             position: 'absolute',
             left: '630px',
@@ -131,18 +131,19 @@ export const Register: React.FC = () => {
 
         
         {/* Botão para Voltar ao Login */}
-        <button 
-          onClick={() => navigate('/login')}
-          className="bg-transparent text-gray-500 font-bold hover:text-blue-500 transition-all border-none outline-none cursor-pointer p-0 underline"
-          style={{
-            position: 'absolute',
-            left: '530px',
-            top: '470px',
-            fontSize: '16px'
-          }}
-        >
-          Já tem uma conta? Voltar para o login
-        </button>
+<button 
+  onClick={() => navigate('/login')}
+  className="bg-transparent text-[#040303] font-extrabold hover:text-blue-500 transition-all border-none outline-none cursor-pointer p-0 underline"
+  style={{
+    position: 'absolute',
+    left: '520px',
+    top: '470px',
+    fontSize: '19px'
+  }}
+>
+  Já tem uma conta? Voltar para o login
+</button>
+
 
       </div>
     </div>
