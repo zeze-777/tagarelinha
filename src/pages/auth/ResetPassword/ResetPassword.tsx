@@ -126,36 +126,38 @@ export const ResetPassword: React.FC = () => {
           }}
         />
 
-        <button
-          onClick={handleReset}
-          disabled={loading}
-          className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
-          style={{ 
-            position: 'absolute',
-            left: '625px',
-            top: '459px',
-            width: '70px', 
-            height: '25px',
-            fontSize: '11px'
-          }}
-        >
-          {loading ? '...' : 'Enviar'}
-        </button>
+        <div className="flex flex-col gap-4 w-full">
+          <button
+            onClick={handleReset}
+            disabled={loading}
+            className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
+            style={{ 
+              position: 'absolute',
+              left: '625px',
+              top: '459px',
+              width: '70px', 
+              height: '25px',
+              fontSize: '11px'
+            }}
+          >
+            {loading ? '...' : 'Enviar'}
+          </button>
 
-        <button
-          onClick={() => navigate('/login')}
-          className="bg-[#128298] text-white font-bold rounded-full shadow-lg uppercase"
-          style={{ 
-            position: 'absolute',
-            left: '720px',
-            top: '459px',
-            width: '70px', 
-            height: '25px',
-            fontSize: '12px'
-          }}
-        >
-          Voltar
-        </button>
+          <button
+            onClick={() => navigate('/login')}
+            className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
+            style={{ 
+              position: 'absolute',
+              left: '720px',
+              top: '459px',
+              width: '70px', 
+              height: '25px',
+              fontSize: '12px'
+            }}
+          >
+            Voltar
+          </button>
+        </div>
       </div>
     </div>
   );

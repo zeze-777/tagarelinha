@@ -1,0 +1,1 @@
+import { PrismaClient } from '../generated/'; import { PrismaPg } from '@prisma/'; import pg from 'pg'; const pool = new pg. ul }); const adapter = new PrismaPg(pool); const prisma = new PrismaClient({ adapter }); export default prisma;
