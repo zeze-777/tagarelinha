@@ -26,7 +26,7 @@ export default function Sentimento() {
   return (
     <div style={{ padding: "2rem" }}>
       <h1 style={{ textAlign: "center", fontSize: "2.5rem" }}>
-        Sentimento
+        Rotina
       </h1>
 
       <p
@@ -36,7 +36,7 @@ export default function Sentimento() {
           marginBottom: "2rem",
         }}
       >
-        Clique em um sentimento para ouvir o som:
+        Clique em uma tag de Rotina para ouvir o som:
       </p>
 
       <div
@@ -46,7 +46,7 @@ export default function Sentimento() {
           gap: "1.5rem",
         }}
       >
-        {sentimentos.map((s, i) => (
+        {routine.map((s, i) => (
           <div
             key={i}
             style={{ textAlign: "center", cursor: "pointer" }}
