@@ -2,14 +2,12 @@ import React from 'react';
 
 // 1. Adicione o 'id' aqui na interface
 interface ActionCardProps {
-  id: string; // ✅ Adicione esta linha
   name: string;
   image_url: string;
   audio_url: string;
 }
 
-// 2. Garanta que o componente também receba o id nas propriedades
-export const ActionCard: React.FC<ActionCardProps> = ({ id, name, image_url, audio_url }) => {
+export const ActionCard: React.FC<ActionCardProps> = ({ name, image_url, audio_url }) => {
   
   const playAudio = () => {
     if (audio_url) {

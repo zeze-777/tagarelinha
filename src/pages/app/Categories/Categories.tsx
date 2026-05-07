@@ -28,13 +28,19 @@ export const Categories: React.FC = () => {
         fontFamily: "'Fredoka One', cursive",
       }}
     >
-      {/* Botão voltar */}
-      <div className="w-full max-w-md flex justify-start mt-6">
+      {/* Botão voltar e perfil */}
+      <div className="w-full max-w-md flex justify-between items-center mt-6">
         <button
           onClick={() => navigate("/login")}
           className="bg-[#409B8C] text-[#FFF] hover:bg-blue-600 rounded-full shadow-lg w-10 h-10 flex items-center justify-center"
         >
-          ← VOLTAR
+          ←
+        </button>
+        <button
+          onClick={() => navigate("/app/profile")}
+          className="bg-[#409B8C] text-[#FFF] hover:bg-[#2e7d6e] rounded-full shadow-lg px-4 h-10 flex items-center justify-center font-bold transition-colors"
+        >
+          PERFIL
         </button>
       </div>
 

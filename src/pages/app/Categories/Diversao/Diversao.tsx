@@ -6,7 +6,7 @@ import imgGame from "../../../../assets/images-category-entertainment/Game_Diver
 import imgParque from "../../../../assets/images-category-entertainment/Parque_Diversao.png";
 import imgPipa from "../../../../assets/images-category-entertainment/Pipa_Diversao.png";
 import type { SymbolFromAPI, Category } from "../Interfaces/interfaces-symbols";
-import {api} from '../../../../services/api'
+import {api, API_BASE_URL} from '../../../../services/api'
 import { useEffect, useState, useMemo } from "react";
 
 const audioCache = new Map<string, HTMLAudioElement>();
@@ -66,7 +66,7 @@ export default function Diversao() {
   const playSound = (soundPath: string) => {
     let audio = audioCache.get(soundPath);
     if (!audio) {
-      audio = new Audio(`http://localhost:3000${soundPath}`);
+      audio = new Audio(`${API_BASE_URL}${soundPath}`);
       audioCache.set(soundPath, audio);
     }
     audio.currentTime = 0;

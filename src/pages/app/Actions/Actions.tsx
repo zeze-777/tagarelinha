@@ -39,7 +39,6 @@ export const Actions: React.FC = () => {
         {actionList.map(item => (
           <ActionCard 
             key={item.id} 
-            id={item.id}
             name={item.name} 
             image_url={item.image_url} 
             audio_url={item.audio_url} 

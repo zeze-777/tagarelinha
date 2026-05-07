@@ -1,51 +1,41 @@
 import { useNavigate } from "react-router-dom";
-import imgFeliz from "../../../../assets/images-category-feeling/Feliz_Sentimento.png";
-import imgTriste from "../../../../assets/images-category-feeling/Triste_Sentimento.png";
-import imgBravo from "../../../../assets/images-category-feeling/Bravo_Sentimento.png";
-import imgSurpreso from "../../../../assets/images-category-feeling/Surpreso_Sentimento.png";
-import imgCansado from "../../../../assets/images-category-feeling/Cansado_Sentimento.png";
-import imgConfuso from "../../../../assets/images-category-feeling/Confuso_Sentimento.png";
+import imgOla from "../../../../assets/images-category-communication/Ola_Comunicacao.png";
+import imgTachau from "../../../../assets/images-category-communication/Tchau_Comunicacao.png";
+import imgSim from "../../../../assets/images-category-communication/Sim_Comunicacao.png";
+import imgNao from "../../../../assets/images-category-communication/Nao_Comunicacao.png";
+import imgObrigado from "../../../../assets/images-category-communication/Obrigado_Comunicacao.png";
+import imgPorFavor from "../../../../assets/images-category-communication/PorFavor_Comunicacao.png";
 import type { SymbolFromAPI, Category } from "../Interfaces/interfaces-symbols";
-import {api, API_BASE_URL} from '../../../../services/api';
-import { useEffect, useState, useMemo } from "react";
+import { api, API_BASE_URL } from '../../../../services/api';
+import { useEffect, useMemo, useState } from "react";
 
 const audioCache = new Map<string, HTMLAudioElement>();
-
 const imageMap: Record<string, string> = {
-    "Feliz": imgFeliz,
-    "Triste": imgTriste,
-    "Bravo": imgBravo,
-    "Surpreso": imgSurpreso,
-    "Cansado": imgCansado,
-    "Confuso": imgConfuso,
-  };
+  "Olá": imgOla,
+  "Tchau": imgTachau,
+  "Sim": imgSim,
+  "Não": imgNao,
+  "Obrigado": imgObrigado,
+  "Por favor": imgPorFavor
+};
 
-export default function Sentimento() {
-  const[categoryId, setCategoryId] = useState<string | null>(null);
+export default function Comunicacao() {
+  const [categoryId, setCategoryId] = useState<string | null>(null);
   const [symbolsFromAPI, setSymbolsFromAPI] = useState<SymbolFromAPI[]>([])
-
-  useEffect(() => {
-    Object.values(imageMap).forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   useEffect(() => {
     async function fetchCategoryId() {
       const response = await api.get("/api/categories");
-      const categ_sentimento = response.data.find((c: Category) => c.name === "Sentimentos");
-      
-      if (categ_sentimento) {
-        setCategoryId(categ_sentimento.id);
+      const categ_comunicacao = response.data.find((c: Category) => c.name === "Comunicação");
+      if (categ_comunicacao) {
+        setCategoryId(categ_comunicacao.id);
       }
     }
-    fetchCategoryId();  
+    fetchCategoryId();
   }, []);
 
   useEffect(() => {
     if (!categoryId) return;
-
     async function fetchSymbols() {
       const response = await api.get(`/api/categories/${categoryId}/symbols/active`);
       setSymbolsFromAPI(response.data);
@@ -53,17 +43,16 @@ export default function Sentimento() {
     fetchSymbols();
   }, [categoryId]);
 
-  const sentimentosMapeados = useMemo(() => {
+  const comunicacaoMap = useMemo(() => {
     return symbolsFromAPI.map((item) => ({
       img: imageMap[item.title],
       label: item.title,
       sound: item.audio_url,
     }));
   }, [symbolsFromAPI]);
-  
 
-  const navigate = useNavigate();
-  
+  const navigate = useNavigate(); 
+
   const playSound = (soundPath: string) => {
     let audio = audioCache.get(soundPath);
     if (!audio) {
@@ -77,7 +66,7 @@ export default function Sentimento() {
   return (
     <div style={{ padding: "2rem" }}>
       <h1 style={{ textAlign: "center", fontSize: "2.5rem" }}>
-        Sentimento
+        Comunicação
       </h1>
 
       <p
@@ -87,7 +76,7 @@ export default function Sentimento() {
           marginBottom: "2rem",
         }}
       >
-        Clique em um sentimento para ouvir o som:
+        Clique em uma tag de Comunicação para ouvir o som:
       </p>
 
       <div
@@ -97,10 +86,10 @@ export default function Sentimento() {
           gap: "1.5rem",
         }}
       >
-        {sentimentosMapeados.map((s, i) => (
+        {comunicacaoMap.map((s, i) => (
           <div
             key={i}
-            style={{ textAlign: "center", cursor: "pointer"}}
+            style={{ textAlign: "center", cursor: "pointer" }}
             onClick={() => playSound(s.sound)}
           >
             <img

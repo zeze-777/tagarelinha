@@ -5,23 +5,64 @@ import imgBanho from "../../../../assets/images-category-routine/Banho_Rotina.pn
 import imgEscola from "../../../../assets/images-category-routine/Escola_Rotina.png";
 import imgEscovarOsDentes from "../../../../assets/images-category-routine/Escovar_dentes_Rotina.png";
 import imgJantar from "../../../../assets/images-category-routine/Jantar_Rotina.png";
+import type { SymbolFromAPI, Category } from "../Interfaces/interfaces-symbols";
+import { api, API_BASE_URL } from '../../../../services/api';
+import { useEffect, useMemo, useState } from "react";
 
-export default function Sentimento() {
-  const routine = [
-    { img: imgAcordar, label: "Acordar", sound: "/sounds/acordar.mp3" },
-    { img: imgAlmoco, label: "Almoço", sound: "/sounds/almoco.mp3" },
-    { img: imgBanho, label: "Banho", sound: "/sounds/banho.mp3" },
-    { img: imgEscola, label: "Escola", sound: "/sounds/escola.mp3" },
-    { img: imgEscovarOsDentes, label: "Escovar os Dentes", sound: "/sounds/escovarosdentes.mp3" },
-    { img: imgJantar, label: "Jantar", sound: "/sounds/jantar.mp3" },
-    ];
+const audioCache = new Map<string, HTMLAudioElement>();
+const imageMap: Record<string, string> = {
+  "Acordar": imgAcordar,
+  "Almoço": imgAlmoco,
+  "Banho": imgBanho,
+  "Escola": imgEscola,
+  "Escovar os dentes": imgEscovarOsDentes,
+  "Jantar": imgJantar
+};
 
-  const navigate = useNavigate();
-  const playSound = (soundPath: string) => {
-    const audio = new Audio(soundPath);
-    audio.currentTime = 0;
-    audio.play();
-  };
+export default function Rotina() {
+  const [categoryId, setCategoryId] = useState<string | null>(null);
+    const [symbolsFromAPI, setSymbolsFromAPI] = useState<SymbolFromAPI[]>([])
+  
+    useEffect(() => {
+      async function fetchCategoryId() {
+        const response = await api.get("/api/categories");
+        const categ_comunicacao = response.data.find((c: Category) => c.name === "Rotinas");
+        if (categ_comunicacao) {
+          setCategoryId(categ_comunicacao.id);
+        }
+      }
+      fetchCategoryId();
+    }, []);
+  
+    useEffect(() => {
+      if (!categoryId) return;
+      async function fetchSymbols() {
+        const response = await api.get(`/api/categories/${categoryId}/symbols/active`);
+        setSymbolsFromAPI(response.data);
+      }
+      fetchSymbols();
+    }, [categoryId]);
+  
+    const routineMap = useMemo(() => {
+      return symbolsFromAPI.map((item) => ({
+        img: imageMap[item.title],
+        label: item.title,
+        sound: item.audio_url,
+      }));
+    }, [symbolsFromAPI]);
+  
+    const navigate = useNavigate(); 
+  
+    const playSound = (soundPath: string) => {
+      let audio = audioCache.get(soundPath);
+      if (!audio) {
+        audio = new Audio(`${API_BASE_URL}${soundPath}`);
+        audioCache.set(soundPath, audio);
+      }
+      audio.currentTime = 0;
+      audio.play();
+    };
+  
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -46,7 +87,7 @@ export default function Sentimento() {
           gap: "1.5rem",
         }}
       >
-        {routine.map((s, i) => (
+        {routineMap.map((s, i) => (
           <div
             key={i}
             style={{ textAlign: "center", cursor: "pointer" }}

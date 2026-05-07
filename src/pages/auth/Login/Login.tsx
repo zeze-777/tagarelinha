@@ -16,11 +16,11 @@ export const Login: React.FC = () => {
     }
 
     try{
-      const response = await api.post('api/login',
-      {
-        email:user,
-        password:password
-      });
+        const response = await api.post('api/login',
+        {
+          email:user,
+          password:password
+        });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('user',JSON.stringify(response.data.user));
