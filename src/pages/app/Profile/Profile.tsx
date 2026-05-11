@@ -511,7 +511,7 @@ export const Profile: React.FC = () => {
               <button onClick={() => { setIsUserModalOpen(false); setUserError(''); }}
                 style={{ flex: 1, backgroundColor: '#409B8C', color: '#fff', padding: '0.5rem 1rem', borderRadius: '9999px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}>Cancelar</button>
               <button onClick={handleSaveUser} disabled={savingUser}
-                style={{ flex: 1, backgroundColor: '#409B8C', color: '#fff', padding: '0.5rem 1rem', borderRadius: '9999px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}>
+                style={{ flex: 1, backgroundColor: savingUser ? '#999' : '#2a68cc', color: '#fff', padding: '0.5rem 1rem', borderRadius: '9999px', fontWeight: 'bold', border: 'none', cursor: savingUser ? 'not-allowed' : 'pointer' }}>
                 {savingUser ? 'Salvando...' : 'Salvar'}
               </button>
             </div>
