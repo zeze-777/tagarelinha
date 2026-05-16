@@ -1,3 +1,4 @@
+ 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api'; 
@@ -144,7 +145,8 @@ export const Register: React.FC = () => {
         {/* BOTÃO CADASTRAR */}
         <button 
           onClick={handleRegister}
-          className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase"
+          disabled={loading}
+          className="bg-[#128298] text-[#FFFFFF] hover:bg-blue-600 text-white font-bold rounded-full shadow-lg flex items-center justify-center uppercase disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ 
             position: 'absolute',
             left: '630px',
@@ -154,7 +156,7 @@ export const Register: React.FC = () => {
             fontSize: '12px'
           }}
         >
-          CADASTRAR
+          {loading ? 'CARREGANDO...' : 'CADASTRAR'}
         </button>
 
         
